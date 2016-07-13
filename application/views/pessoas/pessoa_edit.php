@@ -155,7 +155,7 @@ canvas{
             <label id="ativo">
                 <input checked="checked" class="boolean" 
                        id="ativo" name="ativo" type="checkbox" value="on">Ativo</label>
-            <div class=""
+            
         </fieldset>
     </div>
     <div class="col-md-6">
