@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pessoas extends CI_Controller {
+    /** Variável para controle de insersao
+     * É utilizada para saber se o formulário esta em modo edição e/ou inserção
+     * /
     private $IS_EDITAR;
     
     public function __construct() {
@@ -64,13 +67,14 @@ class Pessoas extends CI_Controller {
         $this->form_validation->set_rules('cidade','Cidade:','required|max_length[120]');
         $this->form_validation->set_rules('uf','UF:','required|max_length[2]');
         
+        //tenta validar o formulário, caso não consiga retorna com os erros de validação
         if ($this->form_validation->run() === FALSE) {
             if ($this->IS_EDITAR) { //se estiver no modo edição
                 $this->editar($this->input->post('id'));
             } else {
                 $this->inserir();
             }
-        } else { //se não sucesso!
+        } else { //se não tenta inserir!
             /* recebe os dados do form (visão) */
             $pes['nome'] = $this->input->post('nome');
             $pes['sobrenome'] = $this->input->post('sobrenome');
@@ -88,13 +92,14 @@ class Pessoas extends CI_Controller {
             //se o endereço não existir insere o endereço e depois 
             //atualiza o id para a variável de pessoa
             if (empty($this->endereco_model->findByCep($end['cep']))){
-                echo "não econtrou o cep";
+        
                 $this->endereco_model->inserir($end);
                 $pes['endereco_id'] = $this->endereco_model->findByCep($end['cep']);
             } 
             
             //chama a função insereir do model se for nova pessoa
             if ($this->input->post('id') == '0') {
+                //se inserir pessoa volta para index, se não retorna um erro em logs
                 $this->pessoa_model->inserir($pes) ? $this->index() : log_message('error','Erro ao inserir pessoa!');
             } else {
                 $pes['id'] = $this->input->post('id');
@@ -142,7 +147,7 @@ class Pessoas extends CI_Controller {
             $dados['cidade']  = (string) $reg->cidade;
             $dados['uf']  = (string) $reg->uf;
         }
-        //var_dump($dados);
+        
         echo json_encode($dados);
     }
 }//fim classe
