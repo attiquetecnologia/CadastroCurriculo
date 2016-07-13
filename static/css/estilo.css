@@ -1,0 +1,36 @@
+body {
+    background-color: #ffffff;
+    font-family: Arial, "Trebuchet MS", sans-serif;
+    font-size: 12px; color: #333;
+    margin: 0px; padding: 10px;
+}
+input[type=text] {
+    width: 300px;
+    height: 25px;
+    border: 1px solid #cccccc;
+}
+input[type=submit] {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #cccccc;
+	margin: 5px 0 0 0;
+}
+label {
+    font-weight: bold;
+}
+ul {
+    margin: 20px 0 0 0;
+    padding: 0px;
+    list-style: none;
+}
+ul li {
+    border-bottom: 1px dotted #aaaaaa;
+    width: 100%;
+    padding: 4px 0 4px 0;
+}
+ul li a {
+    text-decoration: none;
+}
+img {
+    margin-bottom: -2px;
+}
