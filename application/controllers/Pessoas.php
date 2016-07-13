@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pessoas extends CI_Controller {
     /** Variável para controle de insersao
      * É utilizada para saber se o formulário esta em modo edição e/ou inserção
-     * /
+     */
     private $IS_EDITAR;
     
     public function __construct() {
